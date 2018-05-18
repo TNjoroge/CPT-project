@@ -1,0 +1,74 @@
+Ball b;
+boolean h[] = {false, false, false, false};
+
+void setup() {
+  size (600, 600);
+  b = new Ball();
+  frameRate(60);
+  println(h[0]);
+  println(h[1]);
+  println(h[2]);
+  println(h[3]);
+}
+
+void draw() {
+  background(0);
+  b.display();
+  b.movement();
+}
+
+void keyPressed() {
+  if (key == 'w') {
+    h[0] = true;
+  } 
+  if (key == 'a') {
+    h[1] = true;
+  } 
+  if (key == 's') {
+    h[2] = true;
+  } 
+  if (key == 'd') {
+    h[3] = true;
+  }
+}
+
+void keyReleased() {
+  if (key == 'w') {
+    h[0] = false;
+  } 
+  if (key == 'a') {
+    h[1] = false;
+  } 
+  if (key == 's') {
+    h[2] = false;
+  } 
+  if (key == 'd') {
+    h[3] = false;
+  }
+}
+
+
+
+class Ball {
+  float x, y; 
+  void display() {
+    noStroke();
+    fill(255, 0, 255);
+    ellipse(x, y, 50, 50);
+  } 
+
+  void movement() {
+    if (h[0] == true) {
+      y = y -= 4;
+    } 
+    if (h[1] == true) {
+      x = x -= 4;
+    } 
+    if (h[2] == true) {
+      y = y += 4;
+    } 
+    if (h[3] == true) {
+      x = x += 4;
+    }
+  }
+}
