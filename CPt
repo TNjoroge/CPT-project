@@ -1,74 +1,111 @@
 Ball b;
-boolean h[] = {false, false, false, false};
-
+Level lvl;
+boolean move[] = {false, false, false, false};
+float screen;
+PVector vel;
 void setup() {
   size (600, 600);
   b = new Ball();
+  lvl = new Level();
   frameRate(60);
-  println(h[0]);
-  println(h[1]);
-  println(h[2]);
-  println(h[3]);
+  screen = b.pos.x;
+  vel = new PVector(0, 0);
 }
 
 void draw() {
+  if (b.pos.x > screen) {
+    screen = b.pos.x;
+  }
+ 
+  b.movement();
+  b.collision();
+  translate(-screen + 300, 0);
   background(0);
   b.display();
-  b.movement();
+  lvl.display();
 }
 
 void keyPressed() {
   if (key == 'w') {
-    h[0] = true;
+    move[0] = true;
   } 
   if (key == 'a') {
-    h[1] = true;
-  } 
-  if (key == 's') {
-    h[2] = true;
+    move[1] = true;
   } 
   if (key == 'd') {
-    h[3] = true;
+    move[2] = true;
   }
 }
 
 void keyReleased() {
   if (key == 'w') {
-    h[0] = false;
+    move[0] = false;
   } 
   if (key == 'a') {
-    h[1] = false;
-  } 
-  if (key == 's') {
-    h[2] = false;
+    move[1] = false;
   } 
   if (key == 'd') {
-    h[3] = false;
+    move[2] = false;
+  }
+}    
+
+
+
+
+class Ball extends Level {
+  PVector pos;
+
+  Ball() {
+    pos = new PVector(300, 500);
+  }
+  void display() {
+    noStroke();
+    fill(255, 0, 255);
+    ellipse(pos.x, pos.y, 50, 50);
+    if (b.pos.y < 475) {
+      vel.add(0, .5);
+    } else {
+      vel.y = 0;
+    }
+    b.pos.add(vel);
+  } 
+  void movement() {    
+    if (move[0]) {
+      pos.sub(0, 8);
+    } 
+    if (move[1]) {
+      pos.sub(4, 0);
+    } 
+    if (move[2]) {
+      pos.add(4, 0);
+    }
+  }
+
+
+  void collision() {
+    if (pos.x <= 25) {
+      pos.x = 25;
+    }
+    if (pos.y + 25 >= top.y) {
+      pos.y = top.y - 25;
+    }
   }
 }
 
 
 
-class Ball {
-  float x, y; 
+
+
+
+
+class Level {
+  PVector top;
+  Level() {
+    top = new PVector(0, 500);
+  }
   void display() {
     noStroke();
-    fill(255, 0, 255);
-    ellipse(x, y, 50, 50);
-  } 
-
-  void movement() {
-    if (h[0] == true) {
-      y = y -= 4;
-    } 
-    if (h[1] == true) {
-      x = x -= 4;
-    } 
-    if (h[2] == true) {
-      y = y += 4;
-    } 
-    if (h[3] == true) {
-      x = x += 4;
-    }
+    fill(#43A00F);
+    rect(top.x, top.y, 600, 100);
   }
 }
