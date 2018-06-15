@@ -1,11 +1,14 @@
 class Level {
-  PVector ground;
+  float groundX[] = {0, 700};
+  float groundY[] = {500};
   Level() {
-    ground = new PVector(0, 500);
+   
   }
   void display() {
+
     noStroke();
     fill(#43A00F);
-    rect(ground.x, ground.y, 600, 100);
+    rect(groundX[0], groundY[0], 600, 100);
+    rect(groundX[1], groundY[0], 800, 100);
   }
 }

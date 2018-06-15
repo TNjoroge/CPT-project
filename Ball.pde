@@ -1,25 +1,24 @@
-class Ball extends Level {
-  
+class Ball extends Level{
+
   PVector pos;
   PVector constrainPoint;
 
-  
   Ball() {
     pos = new PVector(300, 475);
   }
-  
-//draws character  
+
+  //draws character  
   void display() {
     //move before submission
 
-    
+    background(#08CBFF);
     //character
     noStroke();
     fill(255, 0, 255);
     ellipse(pos.x, pos.y, 50, 50);
   } 
 
-//movement
+  //movement
   void movement() {    
     if (move[0]) {
       pos.sub(0, 8);
@@ -32,16 +31,5 @@ class Ball extends Level {
     }
   }
 
-//checks for ground collision
-  void collision() {  
-    float pointX = constrain(pos.x, ground.x, ground.x + 600);
-    float pointY = constrain(pos.y, ground.y, ground.y + 100);
-    float d = dist(pos.x, pos.y, pointX, pointY);
-    if (d >= 25) {
-      vel.add(0, .5);
-    } else {
-      vel.y = 0;
-    }
-   pos.add(vel);
-  }
+
 }
