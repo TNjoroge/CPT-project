@@ -47,9 +47,9 @@ class Menu {
     //title
     fill(0);
     textSize(60);
-    text("Oof GOT", 170, 100, 400, 500 );
-    text("CAUGHT", 170, 175, 400, 500 );
-    text("LACKIN", 185, 250, 400, 500 );
+    text("Circle", 210, 100, 400, 500 );
+    text("VS", 260, 175, 400, 500 );
+    text("Squares", 190, 250, 400, 500 );
     textSize(48);
     text("CLICK TO START", 108, 418, 500, 100);
   }
