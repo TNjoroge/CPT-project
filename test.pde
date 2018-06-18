@@ -8,6 +8,7 @@ PVector vel;
 float life = -1;
 PVector[] clouds;
 
+
 void setup() {
   size (600, 600);
   b = new Ball();
@@ -39,8 +40,13 @@ void draw() {
     b.display();
     e.display();
     lvl.display();
+    e.movement();
+    
+    
+   
+    
   }
-  if (life == 0) {
+if (life == 0 ) {
     //translate(0 , 0);
     background(0);
     textSize(50);
@@ -49,11 +55,20 @@ void draw() {
     textSize(20);
     text("CLICK ANYWHERE TO RESTART", b.pos.x - 155, 300, 1000, 1000);
   }
+  if(b.pos.x >= 3900){
+    background(0);
+    textSize(50);
+    fill(255);
+    text("Winner", b.pos.x - 250, 250, 1000, 1000);
+  }
+  
   if (b.pos.x > lvl.trap.x) {
       lvl.trap.y += 10;
   }
-}
 
+
+
+}
 void keyPressed() {
   if (key == 'w') {
     move[0] = true;
@@ -98,37 +113,81 @@ void collision() {
   float grndOneY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
   float grndTwoX = constrain(b.pos.x, lvl.groundX[1], lvl.groundX[1] + 500);
   float grndTwoY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
-  float grndThreeX = constrain(b.pos.x, lvl.groundX[2], lvl.groundX[2] + 800);
+  float grndThreeX = constrain(b.pos.x, lvl.groundX[2], lvl.groundX[2] + 100);
   float grndThreeY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
-  //float grndFourX = constrain(b.pos.x, lvl.groundX[3], lvl.groundX[3] + 800);
-  //float grndFourY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
-
+  float grndFourX = constrain(b.pos.x, lvl.groundX[3], lvl.groundX[3] + 500);
+  float grndFourY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
+  float grndFiveX = constrain(b.pos.x, lvl.groundX[4], lvl.groundX[4] + 100);
+  float grndFiveY = constrain(b.pos.y, lvl.groundY[0], lvl.groundY[0] + 100);
+  float grndSixX = constrain(b.pos.x, lvl.groundX[5], lvl.groundX[5] + 100);
+  float grndSevenX = constrain(b.pos.x, lvl.groundX[6], lvl.groundX[6] + 100);
+  float grndEightX = constrain(b.pos.x, lvl.groundX[7], lvl.groundX[7] + 100);
+  float grndNineX = constrain(b.pos.x, lvl.groundX[8], lvl.groundX[8] + 100);
+  float grndTenX = constrain(b.pos.x, lvl.groundX[9], lvl.groundX[9] + 1000);
+  float grndElevenX = constrain(b.pos.x, lvl.groundX[10], lvl.groundX[10] + 100);
+  float grndElevenY = constrain(b.pos.y, lvl.groundX[0], lvl.groundX[0] - 325);
+  
   float disOne = dist(b.pos.x, b.pos.y, grndOneX, grndOneY);
   float disTwo = dist(b.pos.x, b.pos.y, grndTwoX, grndTwoY);
   float disThree = dist(b.pos.x, b.pos.y, grndThreeX, grndThreeY);
+  float disFour = dist(b.pos.x, b.pos.y, grndFourX, grndFourY);
+  float disFive = dist(b.pos.x, b.pos.y, grndFiveX, grndFiveY);
+  float disSix = dist(b.pos.x, b.pos.y, grndSixX, grndFiveY);
+  float disSeven = dist(b.pos.x, b.pos.y, grndSevenX, grndFiveY);
+  float disEight = dist(b.pos.x, b.pos.y, grndEightX, grndFiveY);
+  float disNine = dist(b.pos.x, b.pos.y, grndNineX, grndFiveY);
+  float disTen = dist(b.pos.x, b.pos.y, grndTenX, grndFiveY);
+  float disEleven = dist(b.pos.x, b.pos.y, grndElevenX, grndElevenY);
 
-  float enmyX = constrain(b.pos.x, e.enemyX[0], e.enemyX[0] + 35);
-  float enmyY = constrain(b.pos.y, e.enemyY[0], e.enemyY[0] + 35);
-  float enmyDis = dist(b.pos.x, b.pos.y, enmyX, enmyY);
-
+  float enmyOneX = constrain(b.pos.x, e.enemyX[0], e.enemyX[0] + 35);
+  float enmyOneY = constrain(b.pos.y, e.enemyY[0], e.enemyY[0] + 35);
+  float enmyDisOne = dist(b.pos.x, b.pos.y, enmyOneX, enmyOneY);
+  float enmyTwoX = constrain(b.pos.x, e.enemyX[1], e.enemyX[1] + 35);
+  float enmyTwoY = constrain(b.pos.y, e.enemyY[0], e.enemyY[0] + 35);
+  float enmyDisTwo = dist(b.pos.x, b.pos.y, enmyTwoX, enmyTwoY);
+  float enmyThreeX = constrain(b.pos.x, e.enemyX[2], e.enemyX[2] + 75);
+  float enmyThreeY = constrain(b.pos.y, e.enemyY[1], e.enemyY[1] + 75);
+  float enmyDisThree = dist(b.pos.x, b.pos.y, enmyThreeX, enmyThreeY);
+  float enmyFourX = constrain(b.pos.x, e.enemyX[3], e.enemyX[3] + 75);
+  float enmyFourY = constrain(b.pos.y, e.enemyY[2], e.enemyY[2] + 75);
+  float enmyDisFour = dist(b.pos.x, b.pos.y, enmyFourX, enmyFourY);
+  float enmyFiveX = constrain(b.pos.x, e.enemyX[4], e.enemyX[4] + 75);
+  float enmyFiveY = constrain(b.pos.y, e.enemyY[3], e.enemyY[3] + 75);
+  float enmyDisFive = dist(b.pos.x, b.pos.y, enmyFiveX, enmyFiveY);
+  float enmySixX = constrain(b.pos.x, e.enemyX[5], e.enemyX[5] + 75);
+  float enmySixY = constrain(b.pos.y, e.enemyY[4], e.enemyY[4] + 75);
+  float enmyDisSix = dist(b.pos.x, b.pos.y, enmySixX, enmySixY);
+  float enmySevenX = constrain(b.pos.x, e.enemyX[6], e.enemyX[6] + 75);
+  float enmySevenY = constrain(b.pos.y, e.enemyY[5], e.enemyY[5] + 75);
+  float enmyDisSeven = dist(b.pos.x, b.pos.y, enmySevenX, enmySevenY);
+  float enmyEightX = constrain(b.pos.x, e.enemyX[7], e.enemyX[7] + 35);
+  float enmyDisEight = dist(b.pos.x, b.pos.y, enmyEightX, enmyOneY);
 
   //adds gravity if distance is greater than radius
-  if (disOne >= 25 && disTwo >= 25 && disThree >= 25|| b.pos.y > 500) {
+  if (disOne >= 25 && disTwo >= 25 && disThree >= 25 && disFour >= 25 && disFive >= 25 && disSix >= 25 && disSeven >= 25 && disEight >= 25 && disNine >= 25 && disTen >= 25 && disEleven >=25  || b.pos.y > 500) {
     vel.add(0, .5);
-  } else {
+  }else {
     vel.y = 0;
     b.pos.y = 475;
   }
   b.pos.add(vel);
-
-  //stops ball play area
+  
+  
+    //stops ball play area
   if (b.pos.x <= 125) {
     b.pos.x = 125;
   }
-  if (enmyDis <= 25) {
+  if (enmyDisOne <= 25 || enmyDisTwo <= 25 || enmyDisThree <= 25|| enmyDisFour <= 25|| enmyDisFive <= 25|| enmyDisSix <= 25|| enmyDisSeven <= 25 || enmyDisEight <= 25) {
     println(life);
     b.pos.x = 300;
     life -= 1;
+    e.enemyX[0] =100;
+    e.enemyX[1] =1175;
+    e.enemyY[1] =0;
+    e.enemyY[2] =0;
+    e.enemyY[3] =0;
+    e.enemyY[4] =0;
+    e.enemyY[5] =0;
     translate(b.pos.x, 0);
   }
   if (b.pos.y >= 650) {
@@ -137,4 +196,6 @@ void collision() {
     life -= 1;
     translate(b.pos.x + 300, 0);
   }
+  
+  
 }
