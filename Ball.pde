@@ -24,10 +24,10 @@ class Ball extends Level{
       pos.sub(0, 8);
     } 
     if (move[1]) {
-      pos.sub(4, 0);
+      pos.sub(5, 0);
     } 
     if (move[2]) {
-      pos.add(4, 0);
+      pos.add(5, 0);
     }
   }
 
